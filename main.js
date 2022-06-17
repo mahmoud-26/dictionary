@@ -13,7 +13,6 @@ function fetchApi(word) {
   fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
   .then(res => res.json())
   .then(result => {
-    console.log(result);
     if (result.title) {
       definitionsDiv.innerHTML = `There is no definitions for "${word}"`;
       synonymsDiv.innerHTML = `There is no synonyms for "${word}"`;
@@ -39,4 +38,11 @@ searchBtn.onclick = function () {
   fetchApi(wordInput.value);
   definitionsDiv.innerHTML = "";
   synonymsDiv.innerHTML = "";
+}
+
+searchBtn.onsubmit = function() {
+  fetchApi(wordInput.value);
+  definitionsDiv.innerHTML = "";
+  synonymsDiv.innerHTML = "";
+  console.log(wordInput.value);
 }
