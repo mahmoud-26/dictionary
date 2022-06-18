@@ -5,17 +5,14 @@ let examplesDiv = document.getElementById("examples-div");
 let synonymsDiv = document.getElementById("synonyms-div");
 
 window.onload = function () {
-  wordInput.value = "hello";
-  definitionsDiv.innerHTML = `"Hello!" or an equivalent greeting.`;
-  examplesDiv.innerHTML = `There is no examples for "Hello"`;
-  synonymsDiv.innerHTML = "greeting"
+  wordInput.value = "play";
+  searchWord("play");
 }
 
-function fetchApi(word) {
+function searchWord(word) {
   fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
   .then(res => res.json())
   .then(result => {
-    console.log(result);
     if (result.title) {
       definitionsDiv.innerHTML = `There is no definitions for "${word}"`;
       examplesDiv.innerHTML = `There ia no Examples for "${word}"`;
@@ -46,7 +43,7 @@ function fetchApi(word) {
 }
 
 searchBtn.onclick = function () {
-  fetchApi(wordInput.value);
+  searchWord(wordInput.value);
   definitionsDiv.innerHTML = "";
   examplesDiv.innerHTML = "";
   synonymsDiv.innerHTML = "";
